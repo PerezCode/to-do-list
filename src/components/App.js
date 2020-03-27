@@ -20,13 +20,26 @@ class App extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let currentTasks = this.state.tasks;
-    currentTasks.push(this.state.newTask);
-    this.setState({
-      newTask: "",
-      tasks: currentTasks
-    });
+    if(this.state.newTask === "") {
+      alert('Ingresa una tarea')
+    } else {
+      let currentTasks = this.state.tasks;
+      currentTasks.push(this.state.newTask);
+      this.setState({
+        newTask: "",
+        tasks: currentTasks
+      });
+    }
   };
+
+  handleDelete = (id) => {
+    let newTasks = this.state.tasks;
+    //Splice(indice, cantidad de elementos a eliminar)
+    newTasks.splice(id, 1)
+    this.setState({
+      tasks: newTasks,
+    })
+  }
 
   render() {
     return (
@@ -39,6 +52,7 @@ class App extends React.Component {
         />
         <TaskList
           tasks={this.state.tasks}
+          handleDelete={this.handleDelete}
         />
       </Layout>
     );

@@ -3,7 +3,7 @@ import React from "react";
 const Title = () => {
   return(
     <h1 className="title">
-      Hello world <span aria-label="emoji" role="img">🔥</span>
+      To do list{" "} <span aria-label="emoji" role="img">🔥</span>
     </h1>
   )
 }

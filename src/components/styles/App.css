@@ -31,6 +31,7 @@ body {
   border-width: 4px;
   text-align: center;
   font-size: 24px;
+  margin-bottom: 10px;
   outline: none;
 }
 
@@ -50,4 +51,28 @@ body {
 .task {
   margin: 0;
   padding: 10px 0px 10px 10px;
+}
+
+.delete-button {
+  background-color: black;
+  border-radius: 13px;
+  height: 23px;
+  color: white;
+  border-width: 0px;
+  font-weight: bolder;
+  outline: none;
+}
+
+.button-container {
+  position: relative;
+  float: right;
+  margin: -32px 10px;
+}
+
+.logo {
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 20px;
 }

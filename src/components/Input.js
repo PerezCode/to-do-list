@@ -8,6 +8,7 @@ const Input = (props) => {
         value={props.value}
         onChange={props.onChange}
         className="new-task"
+        placeholder="Enter a new task..."
       />
     </form>
   );
