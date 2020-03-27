@@ -4,6 +4,7 @@ import Layout from "./Layout"
 import Title from "./Title";
 import Input from "./Input"
 import TaskList from "./TaskList";
+import Logo from "./Logo"
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if(this.state.newTask === "") {
-      alert('Ingresa una tarea')
+      alert('Enter a task')
     } else {
       let currentTasks = this.state.tasks;
       currentTasks.push(this.state.newTask);
@@ -45,6 +46,7 @@ class App extends React.Component {
     return (
       <Layout>
         <Title />
+        <Logo />
         <Input
           onSubmit={this.handleSubmit}
           onChange={this.handleChange}
