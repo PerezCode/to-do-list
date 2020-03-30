@@ -45,17 +45,25 @@ class App extends React.Component {
   render() {
     return (
       <Layout>
-        <Title />
-        <Logo />
-        <Input
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-          value={this.state.newTask}
-        />
-        <TaskList
-          tasks={this.state.tasks}
-          handleDelete={this.handleDelete}
-        />
+        <div className="row mt-5 justify-content-center">
+          <div className="col col-sm-6 col-md-8 col-lg-6">
+            <Title />
+            <Logo />
+            <Input
+              onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              value={this.state.newTask}
+            />
+          </div>
+        </div>
+        <div className="row mt-4 justify-content-center">
+          <div className="col col-sm-6 col-md-8 col-lg-6">
+            <TaskList
+              tasks={this.state.tasks}
+              handleDelete={this.handleDelete}
+            />
+          </div>
+        </div>
       </Layout>
     );
   }
