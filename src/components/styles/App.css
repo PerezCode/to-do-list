@@ -54,6 +54,10 @@ body {
   outline: none;
 }
 
+.delete-button:focus {
+  outline: none;
+}
+
 .logo {
   height: 80px;
   margin-left: auto;
