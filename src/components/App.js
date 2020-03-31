@@ -11,7 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       newTask: "",
-      tasks: []
+      tasks: [],
+      error: null,
     };
   }
 
@@ -22,13 +23,14 @@ class App extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     if(this.state.newTask === "") {
-      alert('Enter a task')
+      this.setState({...this.state, error: true})
     } else {
       let currentTasks = this.state.tasks;
       currentTasks.push(this.state.newTask);
       this.setState({
         newTask: "",
-        tasks: currentTasks
+        tasks: currentTasks,
+        error: null
       });
     }
   };
@@ -54,6 +56,13 @@ class App extends React.Component {
               onChange={this.handleChange}
               value={this.state.newTask}
             />
+            { this.state.error ?
+                <div className="alert alert-warning m-0" role="alert">
+                  Must enter a task
+                </div>
+              :
+                null
+            }
           </div>
         </div>
         <div className="row mt-4 justify-content-center">
