@@ -1,4 +1,5 @@
 import React from "react";
+import Faker from "faker";
 import "./styles/App.css";
 import Layout from "./Layout"
 import Title from "./Title";
@@ -10,27 +11,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTask: "",
+      newTask: {taskText: "", id: ""},
       tasks: [],
       error: null,
     };
   }
 
   handleChange = e => {
-    this.setState({ newTask: e.target.value });
+    const uuid = Faker.random.uuid();
+    this.setState({ newTask: { taskText: e.target.value, id: uuid } });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.newTask === "") {
-      this.setState({...this.state, error: true})
+    if(this.state.newTask.taskText === "") {
+      this.setState({ error: true })
     } else {
       let currentTasks = this.state.tasks;
       currentTasks.push(this.state.newTask);
       this.setState({
-        newTask: "",
+        newTask: { taskText: "", id: "" },
         tasks: currentTasks,
-        error: null
+        error: null,
       });
     }
   };

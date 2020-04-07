@@ -9,7 +9,7 @@ const TaskList = props => {
           key={id}
           id={id}
           handleDelete={props.handleDelete}
-          value={task}
+          value={task.taskText}
         />
         ))
       }

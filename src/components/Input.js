@@ -7,7 +7,7 @@ const Input = (props) => {
         <div className="pl-0 col">
           <input
             type="text"
-            value={props.value}
+            value={props.value.taskText}
             onChange={props.onChange}
             className="new-task"
             placeholder="Enter a new task"
