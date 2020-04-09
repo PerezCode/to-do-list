@@ -1,50 +1,72 @@
 import React from "react";
 import Faker from "faker";
 import "./styles/App.css";
-import Layout from "./Layout"
+import Layout from "./Layout";
 import Title from "./Title";
-import Input from "./Input"
+import Input from "./Input";
 import TaskList from "./TaskList";
-import Logo from "./Logo"
+import Logo from "./Logo";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTask: {taskText: "", id: ""},
+      newTask: { taskText: "", id: "" },
       tasks: [],
       error: null,
     };
   }
 
-  handleChange = e => {
-    const uuid = Faker.random.uuid();
-    this.setState({ newTask: { taskText: e.target.value, id: uuid } });
+  handleChange = (e) => {
+    this.setState({ newTask: { taskText: e.target.value, id: "" } });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.newTask.taskText === "") {
-      this.setState({ error: true })
+
+    if (this.state.newTask.taskText === "") {
+      this.setState({ error: true });
     } else {
-      let currentTasks = this.state.tasks;
-      currentTasks.push(this.state.newTask);
-      this.setState({
-        newTask: { taskText: "", id: "" },
-        tasks: currentTasks,
-        error: null,
-      });
+      const uuid = Faker.random.uuid();
+
+      /*Como el this.setState es asincrono va a conservar 
+        los cambios que vienen de handleChange durante un rato.
+
+        Para evitar que se putee el codigo le tiramos el callback 
+        al setState, para asegurar que tome la ultima actualizacion y
+        no agrege el task con el id vacio.
+      */
+
+      this.setState(
+        {
+          newTask: {
+            ...this.state.newTask,
+            id: uuid,
+          },
+        },
+        () => {
+          let currentTasks = this.state.tasks;
+          currentTasks.push(this.state.newTask);
+
+          this.setState({
+            newTask: { taskText: "", id: "" },
+            tasks: currentTasks,
+            error: null,
+          });
+        }
+      );
+     
     }
   };
 
   handleDelete = (id) => {
     let newTasks = this.state.tasks;
     //Splice(indice, cantidad de elementos a eliminar)
-    newTasks.splice(id, 1)
+    newTasks.splice(id, 1);
     this.setState({
       tasks: newTasks,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -58,13 +80,11 @@ class App extends React.Component {
               onChange={this.handleChange}
               value={this.state.newTask}
             />
-            { this.state.error ?
-                <div className="alert alert-warning m-0" role="alert">
-                  Must enter a task
-                </div>
-              :
-                null
-            }
+            {this.state.error ? (
+              <div className="alert alert-warning m-0" role="alert">
+                Must enter a task
+              </div>
+            ) : null}
           </div>
         </div>
         <div className="row mt-4 justify-content-center">
