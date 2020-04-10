@@ -2,13 +2,14 @@ import React from "react";
 import Task from "./Task";
 
 const TaskList = props => {
+  const {tasks, handleDelete} = props;
   return (
     <React.Fragment>
-      { props.tasks.map((task, id) => (
+      { tasks.map((task, id) => (
         <Task
           key={id}
           id={id}
-          handleDelete={props.handleDelete}
+          handleDelete={handleDelete}
           value={task.taskText}
         />
         ))
