@@ -3,11 +3,11 @@ import React from "react";
 const Task = props => {
   const {value, id, handleDelete} = props;
   return (
-    <div className="task-container" key={id}>
+    <div className="task-container">
       <div className="container">
         <div className="row">
           <div className="col-10 pr-0">
-            <h3 className="task">{value}</h3>
+            <h3 className="task-text">{value}</h3>
           </div>
           <div className="col-2 p-0 d-flex justify-content-end">
             <button

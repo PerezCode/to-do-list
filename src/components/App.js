@@ -58,10 +58,8 @@ class App extends React.Component {
     }
   };
 
-  handleDelete = (id) => {
-    let newTasks = this.state.tasks;
-    //Splice(indice, cantidad de elementos a eliminar)
-    newTasks.splice(id, 1);
+  handleDelete = (id="undefined") => {
+    const newTasks = this.state.tasks.filter((obj) => obj.id !== id);
     this.setState({
       tasks: newTasks,
     });

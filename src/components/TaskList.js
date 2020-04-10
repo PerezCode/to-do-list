@@ -5,10 +5,10 @@ const TaskList = props => {
   const {tasks, handleDelete} = props;
   return (
     <React.Fragment>
-      { tasks.map((task, id) => (
+      { tasks.map((task) => (
         <Task
-          key={id}
-          id={id}
+          key={task.id}
+          id={task.id}
           handleDelete={handleDelete}
           value={task.taskText}
         />
