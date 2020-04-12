@@ -17,6 +17,12 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    if (localStorage.getItem("userTasks")) {
+      this.setState({ tasks: JSON.parse(localStorage.getItem("userTasks")) });
+    }
+  }
+
   handleChange = (e) => {
     this.setState({ newTask: { taskText: e.target.value, id: "" } });
   };
@@ -53,16 +59,22 @@ class App extends React.Component {
             tasks: currentTasks,
             error: null,
           });
+          localStorage.setItem("userTasks", JSON.stringify(this.state.tasks));
         }
       );
     }
   };
 
   handleDelete = (id="undefined") => {
-    const newTasks = this.state.tasks.filter((obj) => obj.id !== id);
-    this.setState({
-      tasks: newTasks,
-    });
+    const newTasks = this.state.tasks.filter((task) => task.id !== id);
+    this.setState(
+      {
+        tasks: newTasks,
+      },
+      () => {
+        localStorage.setItem("userTasks", JSON.stringify(this.state.tasks));
+      }
+    );
   };
 
   render() {
